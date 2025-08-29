@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "mypackage.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [],
+	"client": [
+		"MouseInvoker",
+		"WindowMixin",
+		"PauseMenuMixin"
+	],
+	"server": [],
+	"minVersion": "0.8"
+}

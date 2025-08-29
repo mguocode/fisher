@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "lulutherich",
+	"version": "1.0.0",
+	"name": "lulutherich",
+	"description": "Mutes all the annoying irrelevant sounds",
+	"authors": [
+		"lulutherich"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/lulutherich/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"mypackage.LuluTheFish"
+		]
+	},
+	"mixins": [
+		"lulutherich.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21"
+	}
+}
