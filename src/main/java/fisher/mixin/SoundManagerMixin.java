@@ -1,6 +1,6 @@
 package fisher.mixin;
 
-import fisher.SoundListener;
+import fisher.handlers.Sound;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ public class SoundManagerMixin {
 
     @Inject(method = "play(Lnet/minecraft/client/sound/SoundInstance;)V", at = @At("HEAD"))
     private void onPlay(SoundInstance soundInstance, CallbackInfo ci) {
-        SoundListener.onSoundPlay(soundInstance);
+        Sound.onSoundPlay(soundInstance);
     }
 
     // @Inject(method = "stop(Lnet/minecraft/client/sound/SoundInstance;)V", at =

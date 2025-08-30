@@ -5,8 +5,8 @@
 	"mixins": [],
 	"client": [
 		"MouseInvoker",
-		"WindowMixin",
-		"SoundManagerMixin"
+		"SoundManagerMixin",
+		"WindowMixin"
 	],
 	"server": [],
 	"minVersion": "0.8"

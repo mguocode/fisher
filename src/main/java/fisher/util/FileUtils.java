@@ -1,4 +1,4 @@
-package fisher;
+package fisher.util;
 
 import java.io.IOException;
 import java.nio.file.Files;
