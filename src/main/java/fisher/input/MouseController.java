@@ -1,4 +1,4 @@
-package fisher;
+package fisher.input;
 
 import fisher.mixin.MouseInvoker;
 

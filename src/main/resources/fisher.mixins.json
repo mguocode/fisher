@@ -6,7 +6,7 @@
 	"client": [
 		"MouseInvoker",
 		"WindowMixin",
-		"PauseMenuMixin"
+		"SoundManagerMixin"
 	],
 	"server": [],
 	"minVersion": "0.8"

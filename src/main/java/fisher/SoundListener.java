@@ -14,6 +14,7 @@ public class SoundListener {
             FileUtils.writeStringToFile("==================");
             FishingController.handleSoundPlay(soundInstance);
         }
+        FishingController.handleSound(sound);
 
     }
 }
