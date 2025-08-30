@@ -7,95 +7,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Random;
 
-import fisher.FileUtils;
 import fisher.SoundPlayer;
 import fisher.input.ActionExecutorManager;
+import fisher.util.FileUtils;
 
 public class FishingController {
-    private long lastDetectionTime;
-    private double fishingStartX, fishingStartZ;
-    private String fishingStartBiome;
-
-    public void startFishing() {
-        isRunning.set(true);
-        SoundPlayer.play(SoundPlayer.startSound);
-        lastDetectionTime = System.currentTimeMillis();
-        MinecraftClient client = MinecraftClient.getInstance();
-        fishingStartX = client.player.getX();
-        fishingStartZ = client.player.getZ();
-        fishingStartBiome = client.world.getBiome(client.player.getBlockPos()).getKey().get().getValue().toString();
-        FileUtils.writeStringToFile("[LuluTheFish] Auto-fishing started!");
-    }
-
-    public void stopFishing() {
-        isRunning.set(false);
-        ActionExecutorManager.onStopFishing();
-        SoundPlayer.play(SoundPlayer.stopSound);
-        FileUtils.writeStringToFile("[LuluTheFish] Auto-fishing stopped.");
-    }
-
-    private void sanityCheck() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (!isRunning.get())
-            return;
-        // CR mguo: This function crashes when closing the game because onTick still
-        // gets called but player has no location
-        double distance = Math.sqrt(
-                Math.pow(client.player.getX() - fishingStartX, 2) +
-                        Math.pow(client.player.getZ() - fishingStartZ, 2));
-        boolean tooLongSinceLastDetection = (System.currentTimeMillis() - lastDetectionTime > SANITY_CHECK_TIMEOUT);
-        boolean xyzCoordsTooFar = distance > MAX_DISTANCE_FROM_FISHING_START;
-        boolean biomeChanged = !fishingStartBiome
-                .equals(client.world.getBiome(client.player.getBlockPos()).getKey().get()
-                        .getValue().toString());
-
-        if (tooLongSinceLastDetection || xyzCoordsTooFar || biomeChanged) {
-            FileUtils.writeStringToFile("[LuluTheFish] SANITY CHECK FAILED!");
-            FileUtils.writeStringToFile(String.format("[LuluTheFish] biomeChanged: %s, xyz: %s, toolong: %s",
-                    biomeChanged, xyzCoordsTooFar, tooLongSinceLastDetection));
-            SoundManager.play(sanitySound);
-            stopFishing();
-        }
-    }
-
-    private void detectGui() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (!isRunning.get())
-            return;
-
-        Screen screen = client.currentScreen;
-        if (screen == null)
-            return;
-
-        // Stop fishing only if we're in a server-driven GUI (like inventories,
-        // villagers, chests, etc.)
-        if (screen instanceof HandledScreen<?>) {
-            stopFishing();
-        }
-    }
-
-    private void handleKeyPresses() {
-        // Handle toggle key - only process once per key press
-        if (KeyBindings.startKey.wasPressed()) {
-            FileUtils.writeStringToFile("start key pressed");
-            if (!isRunning.get()) {
-                startFishing();
-            }
-        }
-
-        // Handle stop key - only process once per key press
-        if (KeyBindings.stopKey.wasPressed()) {
-            FileUtils.writeStringToFile("stop key pressed");
-            stopFishing();
-            FileUtils.writeStringToFile("[LuluTheFish] Stop activated! (F10 key pressed)");
-        }
-    }
-
-    private void onTick() {
-        sanityCheck();
-        detectGui();
-        handleKeyPresses();
-    }
 
     public void handleSound(SoundInstance sound) {
         // Not needed; we should theoretically dispose when getting to mouse click but
