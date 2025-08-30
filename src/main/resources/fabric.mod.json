@@ -12,11 +12,11 @@
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"mypackage.LuluTheFish"
+			"fisher.FisherMain"
 		]
 	},
 	"mixins": [
-		"lulutherich.mixins.json"
+		"fisher.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.17.2",

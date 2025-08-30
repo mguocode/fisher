@@ -9,21 +9,9 @@ import java.util.Random;
 
 public class FishingController {
     private final AtomicBoolean isRunning = new AtomicBoolean(false);
-    private final ScheduledExecutorService executor;
-    private final Random random;
-    private final SoundEvent startSound = SoundEvents.BLOCK_ANVIL_FALL;
-    private final SoundEvent stopSound = SoundEvents.ENTITY_WITHER_SPAWN;
-    private final SoundEvent sanitySound = SoundEvents.ENTITY_ENDER_DRAGON_DEATH;
-    private final SoundEvent interestingSound = SoundEvents.ENTITY_WITHER_SPAWN;
     private long lastDetectionTime;
     private double fishingStartX, fishingStartZ;
     private String fishingStartBiome;
-
-    public FishingController(ScheduledExecutorService executor, Random random, MinecraftClient client) {
-        // add handlers get sound manager
-        this.executor = executor;
-        this.random = random;
-    }
 
     public boolean isRunning() {
         return isRunning.get();
@@ -31,7 +19,7 @@ public class FishingController {
 
     public void startFishing() {
         isRunning.set(true);
-        SoundManager.play(startSound);
+        SoundManager.play(SoundListener.startSound);
         lastDetectionTime = System.currentTimeMillis();
         MinecraftClient client = MinecraftClient.getInstance();
         fishingStartX = client.player.getX();

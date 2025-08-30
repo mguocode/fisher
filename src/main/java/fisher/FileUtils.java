@@ -16,7 +16,7 @@ public class FileUtils {
     private static final java.time.format.DateTimeFormatter fmt = java.time.format.DateTimeFormatter
             .ofPattern("uuuu-MM-dd HH:mm:ss.SSS");
 
-    public static void initializeFile() {
+    public static void initialize() {
         try {
             java.nio.file.Files.createDirectories(baseDir);
             if (java.nio.file.Files.exists(logPath)) {
