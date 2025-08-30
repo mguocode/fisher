@@ -1,8 +1,9 @@
-package fisher;
+package fisher.util;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 
 public class SoundPlayer {
     public static final SoundEvent startSound = SoundEvents.BLOCK_ANVIL_FALL;

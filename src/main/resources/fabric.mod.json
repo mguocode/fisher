@@ -12,7 +12,7 @@
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"fisher.FisherMain"
+			"fisher.Main"
 		]
 	},
 	"mixins": [

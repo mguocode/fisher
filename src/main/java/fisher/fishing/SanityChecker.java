@@ -3,9 +3,8 @@ package fisher.fishing;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-
-import fisher.FileUtils;
-import fisher.SoundPlayer;
+import fisher.util.FileUtils;
+import fisher.util.SoundPlayer;
 import net.minecraft.client.MinecraftClient;
 
 public class SanityChecker implements FishingIntf {

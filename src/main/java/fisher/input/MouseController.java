@@ -1,8 +1,8 @@
 
 package fisher.input;
 
-import fisher.FileUtils;
 import fisher.mixin.MouseInvoker;
+import fisher.util.FileUtils;
 import net.minecraft.client.MinecraftClient;
 import org.lwjgl.glfw.GLFW;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -23,7 +23,9 @@ public class MouseController {
         if (!reflectionInitialized.get()) {
             initializeReflection();
         }
-        invoker.invokeOnMouseButton(window, button, action, mods);
+        if (reflectionInitialized.get()) {
+            invoker.invokeOnMouseButton(window, button, action, mods);
+        }
     }
 
     public static void toggleMouse(boolean click) {

@@ -1,4 +1,7 @@
 package fisher.input;
+// CR mguo: maybe shut down on client end
+
+// CR mguo: maybe add check before reel and recast?
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,7 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import fisher.math.ClippedGaussian;
+import fisher.util.ClippedGaussian;
 
 public class Clicker implements ActionExecutorIntf {
     private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();

@@ -1,20 +1,23 @@
-package fisher;
+package fisher.handlers;
 
+import fisher.fishing.FishingController;
+import fisher.util.FileUtils;
 import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.sound.SoundEvent;
 
-public class SoundListener {
+public class Sound {
     public static void onSoundPlay(SoundInstance sound) {
         if (passesCheck(sound)) {
             FileUtils.writeStringToFile("=== SOUND DEBUG ===");
             FileUtils.writeStringToFile("Sound ID: " + sound.getId().toString());
             FileUtils.writeStringToFile("Sound Pitch: " + sound.getPitch());
             FileUtils.writeStringToFile("Sound Volume: " + sound.getVolume());
-            FileUtils.writeStringToFile("Sound Set weight " + soundSet.getWeight());
             FileUtils.writeStringToFile("==================");
-            FishingController.handleSoundPlay(soundInstance);
+            FishingController.onDetect();
         }
-        FishingController.handleSound(sound);
 
+    }
+
+    private static boolean passesCheck(SoundInstance sound) {
+        return sound.getId().toString().contains("note_block.pling");
     }
 }
