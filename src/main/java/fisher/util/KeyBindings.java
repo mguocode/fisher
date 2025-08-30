@@ -1,4 +1,4 @@
-package mypackage;
+package fisher.util;
 
 import net.minecraft.client.option.KeyBinding;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
