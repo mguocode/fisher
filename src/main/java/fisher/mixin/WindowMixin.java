@@ -1,4 +1,4 @@
-package mypackage.mixin;
+package fisher.mixin;
 
 import net.minecraft.client.util.Window;
 import org.spongepowered.asm.mixin.Mixin;

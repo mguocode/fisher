@@ -1,6 +1,9 @@
 package fisher.math;
 
+import java.util.Random;
+
 public class ClippedGaussian {
+    private static final Random random = new Random();
     private double mean;
     private double stdev;
     private double minTime;

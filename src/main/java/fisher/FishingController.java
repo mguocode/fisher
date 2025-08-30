@@ -1,4 +1,4 @@
-package mypackage;
+package fisher;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;
@@ -6,6 +6,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Random;
+import fisher.input.ActionExecutorManager;
 
 public class FishingController {
     private final AtomicBoolean isRunning = new AtomicBoolean(false);
@@ -19,7 +20,7 @@ public class FishingController {
 
     public void startFishing() {
         isRunning.set(true);
-        SoundManager.play(SoundListener.startSound);
+        SoundPlayer.play(SoundPlayer.startSound);
         lastDetectionTime = System.currentTimeMillis();
         MinecraftClient client = MinecraftClient.getInstance();
         fishingStartX = client.player.getX();
@@ -30,7 +31,8 @@ public class FishingController {
 
     public void stopFishing() {
         isRunning.set(false);
-        SoundManager.play(stopSound);
+        ActionExecutorManager.onStopFishing();
+        SoundPlayer.play(SoundPlayer.stopSound);
         FileUtils.writeStringToFile("[LuluTheFish] Auto-fishing stopped.");
     }
 

@@ -15,18 +15,27 @@ public class Clicker implements ActionExecutorIntf {
     // concurrent set of all scheduled-but-not-finished tasks
     private final Set<ScheduledFuture<?>> pendingTasks = ConcurrentHashMap.newKeySet();
 
-    private final ClippedGaussian rightClickHoldTimeMs = new ClippedGaussian(70, 11.2, 51.231, 112.31);
-    private final ClippedGaussian reelInitialSleepTimeMs = new ClippedGaussian(200, 30, 79.87, 3000);
-    private final ClippedGaussian reelIntercastSleepTimeMs = new ClippedGaussian(300, 50, 212.31, 2000);
+    private static final ClippedGaussian rightClickHoldTimeMs = new ClippedGaussian(70, 11.2, 51.231, 112.31);
+    private static final ClippedGaussian reelInitialSleepTimeMs = new ClippedGaussian(200, 30, 79.87, 3000);
+    private static final ClippedGaussian reelIntercastSleepTimeMs = new ClippedGaussian(300, 50, 212.31, 2000);
+
+    private static final Clicker INSTANCE = new Clicker();
+
+    private Clicker() {
+    }
+
+    public static Clicker getInstance() {
+        return INSTANCE;
+    }
 
     @Override
-    public void onFishingStop() {
+    public void onStopFishing() {
         // cancel and clear all scheduled tasks
         pendingTasks.forEach(task -> task.cancel(true));
         pendingTasks.clear();
     }
 
-    public void scheduleTask(Runnable task, long delayMs) {
+    private void scheduleTask(Runnable task, long delayMs) {
         // create a wrapper that will remove itself from pendingTasks when done
         class Wrapped implements Runnable {
             private ScheduledFuture<?> self;

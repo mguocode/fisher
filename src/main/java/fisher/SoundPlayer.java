@@ -5,10 +5,10 @@ import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvent;
 
 public class SoundPlayer {
-    public final SoundEvent startSound = SoundEvents.BLOCK_ANVIL_FALL;
-    public final SoundEvent stopSound = SoundEvents.ENTITY_WITHER_SPAWN;
-    public final SoundEvent sanitySound = SoundEvents.ENTITY_ENDER_DRAGON_DEATH;
-    public final SoundEvent interestingSound = SoundEvents.ENTITY_WITHER_SPAWN;
+    public static final SoundEvent startSound = SoundEvents.BLOCK_ANVIL_FALL;
+    public static final SoundEvent stopSound = SoundEvents.ENTITY_WITHER_SPAWN;
+    public static final SoundEvent sanitySound = SoundEvents.ENTITY_ENDER_DRAGON_DEATH;
+    public static final SoundEvent interestingSound = SoundEvents.ENTITY_WITHER_SPAWN;
 
     public static void play(SoundEvent sound) {
         play(sound, 1.0F, 1.5F);
