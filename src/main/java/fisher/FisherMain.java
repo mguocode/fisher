@@ -13,12 +13,14 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.util.Identifier;
 import net.minecraft.client.MinecraftClient;
 
+import fisher.fishing.SanityChecker;
+import fisher.fishing.KeyPressListener;
 import fisher.util.FileUtils;
 import fisher.util.KeyBindings;
 import net.fabricmc.api.ClientModInitializer;
 // import net.minecraft.client.sound.SoundInstance;
 
-public class Main implements ClientModInitializer {
+public class FisherMain implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {

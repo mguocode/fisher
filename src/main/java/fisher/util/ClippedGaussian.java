@@ -1,4 +1,4 @@
-package fisher.math;
+package fisher.util;
 
 import java.util.Random;
 

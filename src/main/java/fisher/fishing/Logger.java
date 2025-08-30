@@ -1,6 +1,6 @@
 package fisher.fishing;
 
-import fisher.FileUtils;
+import fisher.util.FileUtils;
 
 public class Logger implements FishingIntf {
     private static final Logger INSTANCE = new Logger();
