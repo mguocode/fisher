@@ -1,9 +1,8 @@
 package fisher;
 
-// import fisher.FileUtils;
-// import fisher.KeyBindings;
+import fisher.fishing.SanityChecker;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.sound.SoundInstance;
+// import net.minecraft.client.sound.SoundInstance;
 
 public class FisherMain implements ClientModInitializer {
 
@@ -13,6 +12,10 @@ public class FisherMain implements ClientModInitializer {
         KeyBindings.register();
 
         System.out.println("Sound Listener Mod initialized!");
+    }
+
+    public static void onTick() {
+        SanityChecker.getInstance().onTick();
     }
 
 }

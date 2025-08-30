@@ -1,4 +1,4 @@
-package fisher;
+package fisher.fishing;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundEvent;
@@ -6,17 +6,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Random;
+
+import fisher.FileUtils;
+import fisher.SoundPlayer;
 import fisher.input.ActionExecutorManager;
 
 public class FishingController {
-    private final AtomicBoolean isRunning = new AtomicBoolean(false);
     private long lastDetectionTime;
     private double fishingStartX, fishingStartZ;
     private String fishingStartBiome;
-
-    public boolean isRunning() {
-        return isRunning.get();
-    }
 
     public void startFishing() {
         isRunning.set(true);
