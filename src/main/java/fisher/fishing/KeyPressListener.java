@@ -19,5 +19,10 @@ public class KeyPressListener {
             Manager.stopFishing();
             FileUtils.writeStringToFile("[LuluTheFish] Stop activated! (Stop key pressed)");
         }
+
+        if (KeyBindings.fishingModeToggleKey.wasPressed()) {
+            FileUtils.writeStringToFile("fishing mode toggle key pressed");
+            State.getInstance().handleFishingModeToggleKeyPress();
+        }
     }
 }

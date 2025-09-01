@@ -17,7 +17,7 @@ public class Clicker implements ActionExecutorIntf {
     private static final ClippedGaussian keyPressHoldTimeMs = new ClippedGaussian(70, 11.2, 51.231, 112.31);
     private static final ClippedGaussian predicatableReactionTimeMs = new ClippedGaussian(200, 30, 79.87, 3000);
     private static final ClippedGaussian reelIntercastSleepTimeMs = new ClippedGaussian(300, 50, 212.31, 2000);
-    private static final ClippedGaussian apmTimeMs = new ClippedGaussian(110, 25, 50.31, 300);
+    private static final ClippedGaussian apmTimeMs = new ClippedGaussian(130, 25, 50.31, 300);
     private static final Clicker INSTANCE = new Clicker();
     private static final int FISHING_ROD_SLOT = 2;
     private static final int ABILITY_SLOT = 3;

@@ -50,10 +50,13 @@ public class FisherMain implements ClientModInitializer {
             if (client == null || client.textRenderer == null)
                 return;
 
-            String status = State.getInstance().isRunning() ? "[Fishing: ON]" : "[Fishing: OFF]";
-            int color = State.getInstance().isRunning() ? Colors.GREEN : Colors.RED;
+            String runningStatus = State.getInstance().isRunning() ? "[Fishing: ON]" : "[Fishing: OFF]";
+            int runningColor = State.getInstance().isRunning() ? Colors.GREEN : Colors.RED;
+            String abilityStatus = State.getInstance().inAbilityMode() ? "[AbilityMode: ON]" : "[AbilityMode: OFF]";
+            int abilityColor = State.getInstance().inAbilityMode() ? Colors.BLUE : Colors.PURPLE;
 
-            context.drawTextWithShadow(client.textRenderer, status, 10, 10, color);
+            context.drawTextWithShadow(client.textRenderer, runningStatus, 10, 10, runningColor);
+            context.drawTextWithShadow(client.textRenderer, abilityStatus, 10, 30, abilityColor);
         });
 
         FileUtils.writeStringToFile("[LuluTheFish] Initialized");

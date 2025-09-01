@@ -20,7 +20,12 @@ public class FishingController {
             lastDetectionTime = now;
 
             FileUtils.writeStringToFile("[LuluTheFish] detected note block!!");
-            Clicker.getInstance().scheduleReelAndRecast();
+            if (State.getInstance().inAbilityMode()) {
+                Clicker.getInstance().scheduleReelAbilityAndRecast();
+
+            } else {
+                Clicker.getInstance().scheduleReelAndRecast();
+            }
 
         } else {
             FileUtils.writeStringToFile(
