@@ -79,7 +79,7 @@ public class SeaCreatures {
 
         private static final Set<String> interestingCreatures = Set.of("Alligator", "The Loch Emperor", "Titanoboa",
                         "Wiki Tiki",
-                        "Blue Ringed Octopus");
+                        "Blue Ringed Octopus", "Water Hydra");
 
         public static String mapMessageToSeaCreatureName(String message) {
                 for (Map.Entry<String, String> entry : messageToCreature.entrySet()) {

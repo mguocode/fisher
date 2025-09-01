@@ -53,7 +53,7 @@ public class FisherMain implements ClientModInitializer {
             String runningStatus = State.getInstance().isRunning() ? "[Fishing: ON]" : "[Fishing: OFF]";
             int runningColor = State.getInstance().isRunning() ? Colors.GREEN : Colors.RED;
             String abilityStatus = State.getInstance().inAbilityMode() ? "[AbilityMode: ON]" : "[AbilityMode: OFF]";
-            int abilityColor = State.getInstance().inAbilityMode() ? Colors.BLUE : Colors.PURPLE;
+            int abilityColor = State.getInstance().inAbilityMode() ? Colors.CYAN : Colors.LIGHT_PINK;
 
             context.drawTextWithShadow(client.textRenderer, runningStatus, 10, 10, runningColor);
             context.drawTextWithShadow(client.textRenderer, abilityStatus, 10, 30, abilityColor);
