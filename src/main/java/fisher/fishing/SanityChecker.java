@@ -23,6 +23,10 @@ public class SanityChecker implements FishingIntf {
     private double fishingStartX, fishingStartZ;
     private String fishingStartBiome;
 
+    public void setLastDetectionTime(long time) {
+        lastDetectionTime = time;
+    }
+
     public void onStartFishing() {
         MinecraftClient client = MinecraftClient.getInstance();
         lastDetectionTime = System.currentTimeMillis();

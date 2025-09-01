@@ -14,6 +14,7 @@ public class FishingController {
             return;
         }
         long now = System.currentTimeMillis();
+        SanityChecker.getInstance().setLastDetectionTime(now);
 
         if (now - lastDetectionTime > MIN_TIME_BETWEEN_DETECTIONS_MS) {
             lastDetectionTime = now;
