@@ -7,23 +7,32 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SoundManager.class)
 public class SoundManagerMixin {
 
-    @Inject(method = "Lnet/minecraft/client/sound/SoundManager;play(Lnet/minecraft/client/sound/SoundInstance;I)V", at = @At("HEAD"))
-    private void onPlay(SoundInstance soundInstance, CallbackInfo ci) {
-        Sound.onSoundPlay(soundInstance);
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void onInit(CallbackInfo ci) {
+        System.out.println("[DEBUG] SoundManager initialized - mixin is working!");
+
+        // Let's see what methods are available
+        SoundManager manager = (SoundManager) (Object) this;
+        System.out.println("[DEBUG] SoundManager class: " + manager.getClass().getName());
+
+        // Print available methods
+        java.lang.reflect.Method[] methods = manager.getClass().getDeclaredMethods();
+        for (java.lang.reflect.Method method : methods) {
+            if (method.getName().contains("play")) {
+                System.out.println("[DEBUG] Found play method: " + method.getName() + " - " + method.toString());
+            }
+        }
     }
 
-    // @Inject(method = "stop(Lnet/minecraft/client/sound/SoundInstance;)V", at =
-    // @At("HEAD"))
-    // private void onStop(SoundInstance soundInstance, CallbackInfo ci) {
-    // SoundListenerManager.getInstance().notifyStop(soundInstance);
-    // }
-
-    // @Inject(method = "stopAll()V", at = @At("HEAD"))
-    // private void onStopAll(CallbackInfo ci) {
-    // SoundListenerManager.getInstance().notifyManagerClear();
-    // }
+    // Inject into the play method that returns PlayResult
+    // Injecting at retunr because some fields are not initialized
+    @Inject(method = "play(Lnet/minecraft/client/sound/SoundInstance;)Lnet/minecraft/client/sound/SoundSystem$PlayResult;", at = @At("RETURN"))
+    private void onPlay(SoundInstance soundInstance, CallbackInfoReturnable<Object> cir) {
+        Sound.onSoundPlay(soundInstance);
+    }
 }

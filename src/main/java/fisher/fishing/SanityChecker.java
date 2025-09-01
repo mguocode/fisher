@@ -36,10 +36,11 @@ public class SanityChecker implements FishingIntf {
 
     private void sanityCheck() {
         MinecraftClient client = MinecraftClient.getInstance();
+        if (State.getInstance().isRunning() & (client == null || client.player == null || client.world == null)) {
+            Manager.stopFishing();
+        }
         if (!State.getInstance().isRunning())
             return;
-        // CR mguo: This function crashes when closing the game because onTick still
-        // gets called but player has no location
         double distance = Math.sqrt(
                 Math.pow(client.player.getX() - fishingStartX, 2) +
                         Math.pow(client.player.getZ() - fishingStartZ, 2));

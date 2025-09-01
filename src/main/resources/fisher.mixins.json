@@ -1,11 +1,12 @@
 {
 	"required": true,
-	"package": "mypackage.mixin",
+	"package": "fisher.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [],
 	"client": [
 		"MouseInvoker",
 		"SoundManagerMixin",
+		"TestMixin",
 		"WindowMixin"
 	],
 	"server": [],

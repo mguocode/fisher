@@ -13,8 +13,6 @@ import fisher.handlers.Tick;
 import fisher.handlers.Chat;
 import fisher.fishing.Manager;
 import fisher.fishing.State;
-import fisher.fishing.SanityChecker;
-import fisher.fishing.KeyPressListener;
 import fisher.util.FileUtils;
 import fisher.util.KeyBindings;
 import net.fabricmc.api.ClientModInitializer;

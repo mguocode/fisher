@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption;
 public class FileUtils {
 
     private static final java.nio.file.Path baseDir = java.nio.file.Paths
-            .get("C:\\Users\\Matthew\\Desktop\\Minecraft\\auto\\fabric\\logs");
+            .get("C:\\Users\\Matthew\\Desktop\\Minecraft\\auto\\fabric\\logs\\v2");
     private static final String filename = "logs-"
             + java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("uuuu-MM-dd")) +
             ".txt";

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Manager {
     private static final List<FishingIntf> fishers = new ArrayList<>(
-            Arrays.asList(State.getInstance()));
+            Arrays.asList(Logger.getInstance(), State.getInstance(), SanityChecker.getInstance(), Sound.getInstance()));
 
     public static void startFishing() {
         for (FishingIntf fisher : fishers) {

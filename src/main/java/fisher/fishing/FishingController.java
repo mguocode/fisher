@@ -8,6 +8,9 @@ public class FishingController {
     private static long lastDetectionTime = System.currentTimeMillis();
 
     public static void onDetect() {
+        if (!State.getInstance().isRunning()) {
+            return;
+        }
         long now = System.currentTimeMillis();
         double nowSeconds = now / 1000.0;
         double lastDetectionSeconds = lastDetectionTime / 1000.0;
