@@ -23,7 +23,7 @@ public class FishingController {
             if (State.getInstance().inAbilityMode()
                     && (now - lastAbilityCastTime > MIN_TIME_BETWEEN_ABILITY_CASTS_MS)) {
                 lastAbilityCastTime = now;
-                Clicker.getInstance().scheduleReelAbilityAndRecast();
+                Clicker.getInstance().scheduleReelAbilityAndRecast(1);
 
             } else {
                 Clicker.getInstance().scheduleReelAndRecast();

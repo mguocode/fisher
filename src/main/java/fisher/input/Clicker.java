@@ -18,6 +18,7 @@ public class Clicker implements ActionExecutorIntf {
     private static final ClippedGaussian predicatableReactionTimeMs = new ClippedGaussian(200, 30, 79.87, 3000);
     private static final ClippedGaussian reelIntercastSleepTimeMs = new ClippedGaussian(300, 50, 212.31, 2000);
     private static final ClippedGaussian apmTimeMs = new ClippedGaussian(130, 25, 50.31, 300);
+    private static final ClippedGaussian swapDelayMs = new ClippedGaussian(550, 100, 321.31, 721.121);
     private static final Clicker INSTANCE = new Clicker();
     private static final int FISHING_ROD_SLOT = 2;
     private static final int ABILITY_SLOT = 3;
@@ -122,18 +123,20 @@ public class Clicker implements ActionExecutorIntf {
         return sequence;
     }
 
-    public List<TimedTask> buildReelAbilityAndRecastSequence(int number) {
+    public List<TimedTask> buildReelAbilityAndRecastSequence(int hotbarNumber, int numCasts) {
 
         List<TimedTask> sequence = new ArrayList<>();
 
         sequence.addAll(buildRightClickSequence());
         sequence.add(TimedTask.delay((long) apmTimeMs.get()));
-        sequence.addAll(buildHotbarSequence(number));
-        sequence.add(TimedTask.delay((long) apmTimeMs.get()));
-        sequence.addAll(buildRightClickSequence());
+        sequence.addAll(buildHotbarSequence(hotbarNumber));
+        for (int i = 0; i < numCasts; i++) {
+            sequence.add(TimedTask.delay((long) apmTimeMs.get()));
+            sequence.addAll(buildRightClickSequence());
+        }
         sequence.add(TimedTask.delay((long) apmTimeMs.get()));
         sequence.addAll(buildHotbarSequence(FISHING_ROD_SLOT));
-        sequence.add(TimedTask.delay((long) apmTimeMs.get()));
+        sequence.add(TimedTask.delay((long) swapDelayMs.get()));
         sequence.addAll(buildRightClickSequence());
         return sequence;
     }
@@ -151,13 +154,13 @@ public class Clicker implements ActionExecutorIntf {
         scheduleTaskSequence(addPredictableReactionTime(sequence));
     }
 
-    public void scheduleReelAbilityAndRecast() {
-        List<TimedTask> sequence = buildReelAbilityAndRecastSequence(ABILITY_SLOT);
+    public void scheduleReelAbilityAndRecast(int numCasts) {
+        List<TimedTask> sequence = buildReelAbilityAndRecastSequence(ABILITY_SLOT, numCasts);
         scheduleTaskSequence(addPredictableReactionTime(sequence));
     }
 
     public void scheduleReelOverfluxAndRecast() {
-        List<TimedTask> sequence = buildReelAbilityAndRecastSequence(OVERFLUX_SLOT);
+        List<TimedTask> sequence = buildReelAbilityAndRecastSequence(OVERFLUX_SLOT, 1);
         scheduleTaskSequence(addPredictableReactionTime(sequence));
     }
 }
